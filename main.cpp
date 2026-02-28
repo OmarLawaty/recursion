@@ -3,11 +3,12 @@
 
 using namespace std;
 
-void printDigits(int n) {
-  if (n >= 10)
-    printDigits(n / 10);
+void printBinary(int n) {
+  if (n == 0)
+    return;
 
-  cout << (n % 10) << ' ';
+  printBinary(n / 2);
+  cout << (n % 2);
 }
 
 int main() {
@@ -19,13 +20,11 @@ int main() {
   for (int i = 0; i < T; ++i)
     cin >> nums[i];
 
-  for (int i = 0; i < T; ++i) {
-    int n = nums[i];
-
+  for (int n : nums) {
     if (n == 0)
-      cout << "0 ";
+      cout << '0';
     else
-      printDigits(n);
+      printBinary(n);
 
     cout << '\n';
   }
