@@ -1,23 +1,34 @@
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
-void printDown(int n) {
-  if (n == 0)
-    return;
+void printDigits(int n) {
+  if (n >= 10)
+    printDigits(n / 10);
 
-  cout << n;
-  if (n > 1)
-    cout << ' ';
-
-  printDown(n - 1);
+  cout << (n % 10) << ' ';
 }
 
 int main() {
-  int n;
-  if (!(cin >> n))
+  int T;
+  if (!(cin >> T))
     return 0;
 
-  printDown(n);
+  int nums[T];
+  for (int i = 0; i < T; ++i)
+    cin >> nums[i];
+
+  for (int i = 0; i < T; ++i) {
+    int n = nums[i];
+
+    if (n == 0)
+      cout << "0 ";
+    else
+      printDigits(n);
+
+    cout << '\n';
+  }
+
   return 0;
 }
