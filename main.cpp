@@ -2,16 +2,11 @@
 
 using namespace std;
 
-long long maxRecursive(int arr[], int idx, int size) {
-  if (idx == size - 1)
-    return arr[idx];
+long long sumRecursive(int arr[], int idx, int size) {
+  if (idx == size)
+    return 0;
 
-  long long tailMax = maxRecursive(arr, idx + 1, size);
-
-  if (arr[idx] > tailMax)
-    return arr[idx];
-
-  return tailMax;
+  return arr[idx] + sumRecursive(arr, idx + 1, size);
 }
 
 int main() {
@@ -23,9 +18,6 @@ int main() {
   for (int i = 0; i < n; ++i)
     cin >> arr[i];
 
-  if (n == 0)
-    return 0;
-
-  cout << maxRecursive(arr, 0, n) << '\n';
+  cout << sumRecursive(arr, 0, n) << '\n';
   return 0;
 }
