@@ -1,31 +1,35 @@
 #include <iostream>
+#include <string>
 
 using namespace std;
 
-void printChars(int count, char ch) {
-  if (count <= 0)
-    return;
+bool isVowel(char ch) {
+  string vowels = "aeiouAEIOU";
+  for (int i = 0; i < vowels.size(); ++i) {
+    if (ch == vowels[i])
+      return true;
+  }
 
-  cout << ch;
-  printChars(count - 1, ch);
+  return false;
 }
 
-void printReversePyramid(int level, int n) {
-  if (level == 0)
+void countVowels(const string &s, int idx, int count) {
+  if (idx == s.size()) {
+    cout << count << '\n';
     return;
+  }
 
-  printChars(n - level, ' ');
-  printChars(2 * level - 1, '*');
-  cout << '\n';
+  if (isVowel(s[idx]))
+    count++;
 
-  printReversePyramid(level - 1, n);
+  countVowels(s, idx + 1, count);
 }
 
 int main() {
-  int n;
-  if (!(cin >> n))
+  string s;
+  if (!getline(cin, s))
     return 0;
 
-  printReversePyramid(n, n);
+  countVowels(s, 0, 0);
   return 0;
 }
