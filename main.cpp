@@ -1,26 +1,31 @@
 #include <iostream>
-#include <vector>
 
 using namespace std;
 
-void printEvenIndices(long long arr[], int n, int idx = 0) {
-  if (idx >= n)
+void printChars(int count, char ch) {
+  if (count <= 0)
     return;
 
-  printEvenIndices(arr, n, idx + 2);
-  cout << arr[idx] << ' ';
+  cout << ch;
+  printChars(count - 1, ch);
+}
+
+void printPyramid(int level, int n) {
+  if (level > n)
+    return;
+
+  printChars(n - level, ' ');
+  printChars(2 * level - 1, '*');
+  cout << '\n';
+
+  printPyramid(level + 1, n);
 }
 
 int main() {
-  int N;
-  if (!(cin >> N))
+  int n;
+  if (!(cin >> n))
     return 0;
 
-  long long arr[N];
-  for (int i = 0; i < N; ++i)
-    cin >> arr[i];
-
-  printEvenIndices(arr, N);
-
+  printPyramid(1, n);
   return 0;
 }
