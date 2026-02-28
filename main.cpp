@@ -2,12 +2,15 @@
 
 using namespace std;
 
-void printUpToN(int current, int n) {
-  if (current > n)
+void printDown(int n) {
+  if (n == 0)
     return;
 
-  cout << current << '\n';
-  printUpToN(current + 1, n);
+  cout << n;
+  if (n > 1)
+    cout << ' ';
+
+  printDown(n - 1);
 }
 
 int main() {
@@ -15,6 +18,6 @@ int main() {
   if (!(cin >> n))
     return 0;
 
-  printUpToN(1, n);
+  printDown(n);
   return 0;
 }
