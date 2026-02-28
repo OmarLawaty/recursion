@@ -2,13 +2,12 @@
 
 using namespace std;
 
-void printRecursion(int n) {
-
-  if (n < 1)
+void printUpToN(int current, int n) {
+  if (current > n)
     return;
-  printRecursion(n - 1);
 
-  cout << "I love Recursion" << '\n';
+  cout << current << '\n';
+  printUpToN(current + 1, n);
 }
 
 int main() {
@@ -16,6 +15,6 @@ int main() {
   if (!(cin >> n))
     return 0;
 
-  printRecursion(n);
+  printUpToN(1, n);
   return 0;
 }
