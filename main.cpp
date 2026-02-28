@@ -3,31 +3,24 @@
 
 using namespace std;
 
-void printBinary(int n) {
-  if (n == 0)
+void printEvenIndices(long long arr[], int n, int idx = 0) {
+  if (idx >= n)
     return;
 
-  printBinary(n / 2);
-  cout << (n % 2);
+  printEvenIndices(arr, n, idx + 2);
+  cout << arr[idx] << ' ';
 }
 
 int main() {
-  int T;
-  if (!(cin >> T))
+  int N;
+  if (!(cin >> N))
     return 0;
 
-  int nums[T];
-  for (int i = 0; i < T; ++i)
-    cin >> nums[i];
+  long long arr[N];
+  for (int i = 0; i < N; ++i)
+    cin >> arr[i];
 
-  for (int n : nums) {
-    if (n == 0)
-      cout << '0';
-    else
-      printBinary(n);
-
-    cout << '\n';
-  }
+  printEvenIndices(arr, N);
 
   return 0;
 }
