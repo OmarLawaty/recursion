@@ -10,15 +10,15 @@ void printChars(int count, char ch) {
   printChars(count - 1, ch);
 }
 
-void printPyramid(int level, int n) {
-  if (level > n)
+void printReversePyramid(int level, int n) {
+  if (level == 0)
     return;
 
   printChars(n - level, ' ');
   printChars(2 * level - 1, '*');
   cout << '\n';
 
-  printPyramid(level + 1, n);
+  printReversePyramid(level - 1, n);
 }
 
 int main() {
@@ -26,6 +26,6 @@ int main() {
   if (!(cin >> n))
     return 0;
 
-  printPyramid(1, n);
+  printReversePyramid(n, n);
   return 0;
 }
